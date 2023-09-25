@@ -1,0 +1,1 @@
+insert into COUNTRY value(4, 'Abuja', 'NGN', 'Africa', 'Nigeria', 'America');
