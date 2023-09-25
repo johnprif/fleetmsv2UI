@@ -2,53 +2,99 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Top Navigation</title>
 
-<body>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
 
-<div layout:fragment="content">
-    <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i>HR Home</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/index">Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/hr">HR Home</a></li>
-                    <li><i class="fa fa-square-o"></i>HR Home</li>
-                </ol>
-            </div>
+<body class="hold-transition sidebar-mini layout-fixed">
+<!--main content start-->
+  <div layout:fragment="content">
+    <div class="wrapper">
+
+      <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+          <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
         </div>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <section class="panel">
-                    <div class="panel-body">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"><h3><b>Users</b></h3></h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="/security/users" class="btn btn-primary">Manage Countries</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Users Managment Table</h1>
             </div>
-            <div class="col-lg-4">
-                <section class="panel">
-                    <div class="panel-body">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"><h3><b>Roles</b></h3></h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="/security/roles" class="btn btn-primary">Manage Modules</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <!--Navigation bar-->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="/index">Home</a></li>
+                <li class="breadcrumb-item"><a href="/security">Security Home</a></li>
+                <li class="breadcrumb-item active">Users Managment Table</li>
+              </ol>
             </div>
-        </div>
-        
-    </section>
-</div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
 
+          <!-- Main content -->
+          <section class="content">
+            <div class="container">
+            <div class="row">
+              <!-- /.col-md-6 -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title m-0">Featured</h5>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title">Users</h6>
+
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="/security/users" class="btn btn-primary">Manage Users</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card card-primary card-outline">
+                  <div class="card-header">
+                    <h5 class="card-title m-0">Featured</h5>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title">Roles</h6>
+
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="/security/roles" class="btn btn-primary">Manage Roles</a>
+                  </div>
+                </div>
+              </div>
+              <!-- /.col-md-6 -->
+            </div>
+            </div>
+
+          </section>
+          <!-- /.content -->
+        <!-- /.content-wrapper -->
+    </div>
+  </div>
+  <!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
 </body>
 </html>

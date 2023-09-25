@@ -67,6 +67,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+  background-color: #e9ecef;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -34973,7 +34974,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .register-page {
   -ms-flex-align: center;
   align-items: center;
-  background-color: #e9ecef;
+  background-repeat: no-repeat;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;

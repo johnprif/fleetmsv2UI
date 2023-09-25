@@ -3,6 +3,7 @@ package com.kindsonthegenius.fleetmsv2.security.services;
 import com.kindsonthegenius.fleetmsv2.parameters.models.Country;
 import com.kindsonthegenius.fleetmsv2.security.models.User;
 import com.kindsonthegenius.fleetmsv2.security.repositories.UserRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
