@@ -18,11 +18,12 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <!--main content start-->
   <div layout:fragment="content">
+
     <div class="wrapper">
 
       <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-          <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+      <div class="preloader flex-column justify-content-center align-items-center">
+          <img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60" width="60">
         </div>
 
       <!-- Content Header (Page header) -->
@@ -36,51 +37,50 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/index">Home</a></li>
-                <li class="breadcrumb-item"><a href="/security">Security Home</a></li>
-                <li class="breadcrumb-item active">Users Managment Table</li>
+                <li class="breadcrumb-item active">Security Home</li>
               </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
       </section>
 
-          <!-- Main content -->
-          <section class="content">
-            <div class="container">
-            <div class="row">
-              <!-- /.col-md-6 -->
-              <div class="col-lg-6">
-                <div class="card">
-                  <div class="card-header">
-                    <h5 class="card-title m-0">Featured</h5>
-                  </div>
-                  <div class="card-body">
-                    <h6 class="card-title">Users</h6>
-
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="/security/users" class="btn btn-primary">Manage Users</a>
-                  </div>
-                </div>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container">
+        <div class="row">
+          <!-- /.col-md-6 -->
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title m-0">Featured</h5>
               </div>
-              <div class="col-lg-6">
-                <div class="card card-primary card-outline">
-                  <div class="card-header">
-                    <h5 class="card-title m-0">Featured</h5>
-                  </div>
-                  <div class="card-body">
-                    <h6 class="card-title">Roles</h6>
+              <div class="card-body">
+                <h6 class="card-title">Users</h6>
 
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="/security/roles" class="btn btn-primary">Manage Roles</a>
-                  </div>
-                </div>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="/security/users" class="btn btn-primary">Manage Users</a>
               </div>
-              <!-- /.col-md-6 -->
             </div>
-            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title m-0">Featured</h5>
+              </div>
+              <div class="card-body">
+                <h6 class="card-title">Roles</h6>
 
-          </section>
-          <!-- /.content -->
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="/security/roles" class="btn btn-primary">Manage Roles</a>
+              </div>
+            </div>
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        </div>
+
+      </section>
+      <!-- /.content -->
         <!-- /.content-wrapper -->
     </div>
   </div>
