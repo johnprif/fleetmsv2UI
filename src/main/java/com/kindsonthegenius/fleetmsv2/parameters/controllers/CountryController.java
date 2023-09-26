@@ -97,5 +97,4 @@ public class CountryController {
         countryService.delete(id);
         return "redirect:/parameters/countries";
     }
-
 }

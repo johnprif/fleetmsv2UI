@@ -51,7 +51,7 @@ public class LocationController {
 		return "redirect:/parameters/locations";
 	}
 
-	@RequestMapping(value="/parameters/location/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
+	@RequestMapping(value="/parameters/location/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
 	public String deleteById(@PathVariable Integer id) {
 		locationService.deleteById(id);
 		return "redirect:/parameters/locations";
