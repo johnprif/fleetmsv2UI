@@ -28,6 +28,11 @@ public class InvoiceController {
 		return "/accounts/invoices";
 	}
 
+	@GetMapping("/accounts/invoice")
+	public String  getPrintInvoice(){
+		return "/accounts/invoice";
+	}
+
 	@GetMapping("/accounts/invoiceAdd")
 	public String addInvoice(){
 		return "accounts/invoiceAdd";
