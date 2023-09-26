@@ -33,6 +33,10 @@ public class InvoiceController {
 		return "/accounts/invoice";
 	}
 
+	@GetMapping("/accounts/invoice-print")
+	public String  printInvoice(){
+		return "/accounts/invoice-print";
+	}
 	@GetMapping("/accounts/invoiceAdd")
 	public String addInvoice(){
 		return "accounts/invoiceAdd";
