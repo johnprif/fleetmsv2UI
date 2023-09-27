@@ -47,4 +47,12 @@ public class UserService {
         Pageable pageable = PageRequest.of(pageNumber -1, 5);
         return userRepository.findAll(pageable);
     }
+
+    public void updateUserPreferences(String username, boolean darkModeEnabled) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            user.setDarkModeEnabled(darkModeEnabled);
+            userRepository.save(user);
+        }
+    }
 }

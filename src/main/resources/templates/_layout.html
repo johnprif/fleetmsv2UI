@@ -405,6 +405,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <h5>Title</h5>
         <p>Sidebar content</p>
       </div>
+      <!-- Dark Mode Toggle Button -->
+      <div class="p-3">
+        <h5>Dark Mode</h5>
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
     </aside>
     <!-- /.control-sidebar -->
 
@@ -429,6 +437,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script th:src="@{/dist/js/adminlte.min.js}"></script>
   <!-- AdminLTE for demo purposes -->
 <!--  <script th:src="@{/dist/js/demo.js}"></script>-->
+
+  <script th:inline="javascript">
+        // Assuming you have a button element with the id "darkModeToggle"
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    darkModeToggle.addEventListener('click', function () {
+        // Toggle the dark mode by adding/removing a CSS class
+        document.body.classList.toggle('dark-mode');
+
+        // You may need to update other elements or settings as well
+
+        // Save the user's preference to localStorage
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    });
+
+    // Check the user's previous preference and apply dark mode if enabled
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.checked = !darkModeToggle.checked; // Toggle the checkbox state
+    }
+
+  </script>
 
   <th:block layout:fragment="script"></th:block>
 </body>

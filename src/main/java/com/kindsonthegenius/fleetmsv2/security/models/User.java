@@ -24,6 +24,16 @@ public class User {
     private String username;
     private String password;
 
+    public boolean isDarkModeEnabled() {
+        return darkModeEnabled;
+    }
+
+    public void setDarkModeEnabled(boolean darkModeEnabled) {
+        this.darkModeEnabled = darkModeEnabled;
+    }
+
+    private boolean darkModeEnabled;
+
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
