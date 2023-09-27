@@ -2,131 +2,212 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
-<body>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | DataTables</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
 
 <div layout:fragment="content">
-    <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Vehicle Hire Add</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/fleet">Fleet Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/fleet/hires">Hire List</a></li>
-                    <li><i class="fa fa-square-o"></i>Vehicle Hire Add</li>
-                </ol>
-            </div>
+
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60" width="60">
         </div>
-        <div class="container" style="width: 70%">
-            <form class="form-horizontal" th:action="@{/fleet/hires}" method="post">
-                <div class="row justify-content-center white-bg">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            New Vehicle Hire Record
-                        </header>
-                        <br>
-                        <div class="col-lg-6">
-                            <section class="panel">
-                                <div class="form-group row">
-                                    <label for="ddlVehicleAdd" class="col-sm-4 col-form-label">Vehicle: </label>
-                                    <div class="col-sm-6">
-                                        <select id="ddlVehicleAdd" name="vehicleid" class="form-control">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="vehicle : ${vehicles}"
-                                                    th:value="${vehicle.id}"
-                                                    th:text="${vehicle.name}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlClientAdd" class="col-sm-4 col-form-label">Client: </label>
-                                    <div class="col-sm-6">
-                                        <select id="ddlClientAdd" name="clientid" class="form-control">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="client : ${clients}"
-                                                    th:value="${client.id}"
-                                                    th:text="${client.name}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="dateOutAdd" class="col-sm-4 col-form-label">Date Out: </label>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" id="dateOutAdd" name="dateOut"
-                                               placeholder="Date Out">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="timeOutAdd" class="col-sm-4 col-form-label">Time Out:</label>
-                                    <div class="col-sm-6">
-                                        <input type="time" class="form-control" id="timeOutAdd" name="timeOut"
-                                               placeholder="Time Out">
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                        <div class="col-lg-6">
-                            <section class="panel">
-                                <div class="form-group row">
-                                    <label for="ddlLocationAdd" class="col-sm-4 col-form-label">Destination: </label>
-                                    <div class="col-sm-6">
-                                        <select id="ddlLocationAdd" name="locationid" class="form-control">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="location : ${locations}"
-                                                    th:value="${location.id}"
-                                                    th:text="${location.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="dateInAdd" class="col-sm-4 col-form-label">Date In: </label>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" id="dateInAdd" name="dateIn"
-                                               placeholder="Date In">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="timeInAdd" class="col-sm-4 col-form-label">Time In: </label>
-                                    <div class="col-sm-6">
-                                        <input type="time" class="form-control" id="timeInAdd" name="timeIn"
-                                               placeholder="Time In">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="priceAdd" class="col-sm-4 col-form-label">Price: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="priceAdd" name="price"
-                                               placeholder="Price">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="remarksAdd" class="col-sm-4 col-form-label">Remarks</label>
-                                    <div class="col-sm-6">
-                                        <textarea class="form-control" id="remarksAdd" name="remarks"
-                                                  placeholder="Remarks" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </section>
-                </div>
-                <br>
-                <div class="row white-bg">
-                    <div class="panel-body">
-                        <button type="submit" class="btn btn-primary">
-                            Save
-                        </button>
-                        <a href="/fleet/hires" class="btn  btn-warning">
-                            Exit
-                        </a>
+
+        <!-- Content Wrapper. Contains page content -->
+
+        <!-- Content Header (Page header) -->
+        <!--Link path-->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Add Vehicle Hire</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/fleet">Fleet Home</a></li>
+                            <li class="breadcrumb-item"><a href="/fleet/hires">Vehicles Hires</a></li>
+                            <li class="breadcrumb-item active">Add Vehicle Hire</li>
+                        </ol>
                     </div>
                 </div>
-            </form>
-        </div>
-    </section>
-</div>
+            </div><!-- /.container-fluid -->
+        </section>
 
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid" style="width: 70%">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Add New Vehicle Hire Record</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form th:action="@{/fleet/hires}" method="post">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="ddlVehicleAdd">Vehicle</label>
+                                                <select class="form-control select2" id="ddlVehicleAdd" name="vehicleid" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="vehicle : ${vehicles}"
+                                                            th:value="${vehicle.id}"
+                                                            th:text="${vehicle.name}">
+                                                    </option>
+                                                </select></div>
+                                            <div class="form-group">
+                                                <label for="ddlClientAdd">Client</label>
+                                                <select class="form-control select2" id="ddlClientAdd" name="clientid" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="client : ${clients}"
+                                                            th:value="${client.id}"
+                                                            th:text="${client.name}">
+                                                    </option>
+                                                </select></div>
+                                            <div class="form-group">
+                                                <label for="dateOutAdd">Date Out</label>
+                                                <input id="dateOutAdd" name="dateOut" type="date" class="form-control" placeholder="Date Out" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="timeOutAdd">Time Out</label>
+                                                <input id="timeOutAdd" name="timeOut" type="time" class="form-control" placeholder="Time Out" required>
+                                            </div>
+                                        </div>
+                                        <!--    New Column   -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="ddlLocationAdd">Destination</label>
+                                                <select class="form-control select2" id="ddlLocationAdd" name="locationid" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="location : ${locations}"
+                                                            th:value="${location.id}"
+                                                            th:text="${location.description}">
+                                                    </option>
+                                                </select></div>
+                                            <div class="form-group">
+                                                <label for="dateInAdd">Date In</label>
+                                                <input id="dateInAdd" name="dateIn" type="date" class="form-control" placeholder="Date In" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="timeInAdd">Time In</label>
+                                                <input id="timeInAdd" name="timeIn" type="time" class="form-control" placeholder="Time In" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="priceAdd">Price</label>
+                                                <input id="priceAdd" name="price" type="number" class="form-control" placeholder="Price" required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="remarksAdd">Remarks</label>
+                                                <textarea id="remarksAdd" name="remarks" type="text" class="form-control" placeholder="Remarks" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a href="/fleet/hires" class="btn  btn-warning">
+                                        Exit
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+</div>
+<!-- ./wrapper -->
+
+<th:block layout:fragment="script">
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../plugins/jszip/jszip.min.js"></script>
+    <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+          bsCustomFileInput.init();
+        });
+    </script>
+
+    <script>
+        $('document').ready(function () { // Line 1
+
+            $('#ddlCountryAdd').on('change',function () { // Line 2
+                console.log("I got here!")
+
+                $('#ddlStateAdd').empty().append('<option value="null">-SELECT-</option>'); // Line 3
+
+                var countryid = $(this).val(); //Line 4
+
+                var href = "http://localhost:8080/parameters/country/" + countryid //Line 5
+
+                $.get(href, function (country, status) { // Line 6
+
+                    var states = country.states; // Line 7
+
+                    for (var i = 0; i <= states.length-1; i++) { // Line 8
+                        $('#ddlStateAdd').append('<option value="' + states[i].id + '">' + states[i].name + '</option>'); // Line 9
+                    }
+                })
+            })
+
+        })
+    </script>
+
+</th:block>
 </body>
 </html>

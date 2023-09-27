@@ -3,113 +3,203 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
 
-<body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | DataTables</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
 
 <div layout:fragment="content">
-    <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i>Vehicle Movement Add</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="/fleet">Fleet Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/fleet/movements">Vehicle Movement List</a></li>
-                    <li><i class="fa fa-square-o"></i>Vehicle Movement Add</li>
-                </ol>
-            </div>
+
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60" width="60">
         </div>
-        <div class="container" style="width: 70%">
-            <form class="form-horizontal" th:action="@{/fleet/movements}" method="post">
-                <div class="row justify-content-center white-bg">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            New Vehicle Movement Record
-                        </header>
-                        <br>
-                        <div class="col-lg-6">
-                            <section class="panel">
-                                <div class="form-group row">
-                                    <label for="idAdd" class="col-sm-4 col-form-label">Id:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="idAdd" name="id" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlVehicleAdd" class="col-form-label col-sm-4">Vehicle: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlVehicleAdd" name="vehicleid">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="vehicle : ${vehicles}"
-                                                    th:value="${vehicle.id}"
-                                                    th:text="${vehicle.name}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlLocation1Add" class="col-form-label col-sm-4">Departed from: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlLocation1Add" name="locationid1">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="location : ${locations1}"
-                                                    th:value="${location.id}"
-                                                    th:text="${location.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="date1Add" class="col-form-label col-sm-4">Departure Date:</label>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" id="date1Add" name="date1">
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                        <div class="col-lg-6">
-                            <section class="panel">
-                                <div class="form-group row">
-                                    <label for="ddlLocation2Add" class="col-form-label col-sm-4">Arrived at: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlLocation2Add" name="locationid2">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="location : ${locations2}"
-                                                    th:value="${location.id}"
-                                                    th:text="${location.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="date2Add" class="col-form-label col-sm-4">Arrival date:</label>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" id="date2Add" name="date2">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="remarksAdd" class="col-form-label col-sm-4">Remarks:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="remarksAdd" name="remarks">
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </section>
-                </div>
-                <br>
-                <div class="row white-bg">
-                    <div class="panel-body">
-                        <button type="submit" class="btn btn-primary">
-                            Save
-                        </button>
-                        <a href="/fleet/movements" class="btn  btn-warning">
-                            Exit
-                        </a>
+
+        <!-- Content Wrapper. Contains page content -->
+
+        <!-- Content Header (Page header) -->
+        <!--Link path-->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Add Vehicle Movement</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/fleet">Fleet Home</a></li>
+                            <li class="breadcrumb-item"><a href="/fleet/movements">Vehicles Movements</a></li>
+                            <li class="breadcrumb-item active">Add Vehicle Movement</li>
+                        </ol>
                     </div>
                 </div>
-            </form>
-        </div>
-    </section>
-</div>
+            </div><!-- /.container-fluid -->
+        </section>
 
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid" style="width: 70%">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Add New Vehicle Movement Record</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form th:action="@{/fleet/movements}" method="post">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="idAdd">Id</label>
+                                                <input id="idAdd" name="id" type="text" class="form-control" disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ddlVehicleAdd">Vehicle</label>
+                                                <select class="form-control select2" id="ddlVehicleAdd" name="vehicleid" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="vehicle : ${vehicles}"
+                                                            th:value="${vehicle.id}"
+                                                            th:text="${vehicle.name}">
+                                                    </option>
+                                                </select></div>
+                                            <div class="form-group">
+                                                <label for="ddlLocation1Add">Departed from</label>
+                                                <select class="form-control select2" id="ddlLocation1Add" name="locationid1" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="location : ${locations}"
+                                                            th:value="${location.id}"
+                                                            th:text="${location.description}">
+                                                    </option>
+                                                </select></div>
+                                            <div class="form-group">
+                                                <label for="date1Add">Departure Date</label>
+                                                <input id="date1Add" name="date1" type="date" class="form-control" placeholder="Departure Date" required>
+                                            </div>
+                                        </div>
+                                        <!--    New Column   -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="ddlLocation2Add">Arrived at</label>
+                                                <select class="form-control select2" id="ddlLocation2Add" name="locationid2" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="location : ${locations2}"
+                                                            th:value="${location.id}"
+                                                            th:text="${location.description}">
+                                                    </option>
+                                                </select></div>
+                                            <div class="form-group">
+                                                <label for="date2Add">Arrival date</label>
+                                                <input id="date2Add" name="date2" type="date" class="form-control" placeholder="Arrival date" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="remarksAdd">Remarks</label>
+                                                <textarea id="remarksAdd" name="remarks" type="text" class="form-control" placeholder="Remarks" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a href="/fleet/movements" class="btn  btn-warning">
+                                        Exit
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+</div>
+<!-- ./wrapper -->
+
+<th:block layout:fragment="script">
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../plugins/jszip/jszip.min.js"></script>
+    <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+          bsCustomFileInput.init();
+        });
+    </script>
+
+    <script>
+        $('document').ready(function () { // Line 1
+
+            $('#ddlCountryAdd').on('change',function () { // Line 2
+                console.log("I got here!")
+
+                $('#ddlStateAdd').empty().append('<option value="null">-SELECT-</option>'); // Line 3
+
+                var countryid = $(this).val(); //Line 4
+
+                var href = "http://localhost:8080/parameters/country/" + countryid //Line 5
+
+                $.get(href, function (country, status) { // Line 6
+
+                    var states = country.states; // Line 7
+
+                    for (var i = 0; i <= states.length-1; i++) { // Line 8
+                        $('#ddlStateAdd').append('<option value="' + states[i].id + '">' + states[i].name + '</option>'); // Line 9
+                    }
+                })
+            })
+
+        })
+    </script>
+
+</th:block>
 </body>
 </html>
