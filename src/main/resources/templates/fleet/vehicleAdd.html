@@ -79,11 +79,11 @@
                                                     </option>
                                                 </select></div>
                                             <div class="form-group">
-                                                <label for="txtVehicleNameAdd">Vehicle</label>
-                                                <input id="txtVehicleNameAdd" name="name" type="text" class="form-control" placeholder="Vehicle" disabled>
+                                                <label for="txtVehicleNameAdd">Vehicle Name</label>
+                                                <input id="txtVehicleNameAdd" name="name" type="text" class="form-control" placeholder="Vehicle Name" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="txtVehicleNumberAdd">Name</label>
+                                                <label for="txtVehicleNumberAdd">Vehicle Name</label>
                                                 <input id="txtVehicleNumberAdd" name="vehicleNumber"type="text" class="form-control" placeholder="Vehicle number" required>
                                             </div>
                                             <div class="form-group">
@@ -153,9 +153,9 @@
                                                             th:text="${vehicleStatus.description}">
                                                     </option>
                                                 </select></div>
-                                            <div class="form-group">
-                                                <label>Select Image</label>
-                                                <input id="fupImageAdd" name="photo" type="file" class="form-control-file" placeholder="Select File" required></input>
+                                            <div class="custom-file">
+                                                <label class="custom-file-label" for="exampleInputFile">Select Image</label>
+                                                <input id="exampleInputFile" name="photo" type="file" class="custom-file-input" placeholder="Select File" required></input>
                                             </div>
                                             <div class="form-group">
                                                 <label for="ddlCurrentLocationAdd">Current Location</label>
