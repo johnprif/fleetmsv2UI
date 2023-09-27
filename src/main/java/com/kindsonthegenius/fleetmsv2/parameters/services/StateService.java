@@ -32,4 +32,8 @@ public class StateService {
 	public void save( State state) {
 		stateRepository.save(state);
 	}
+
+    public List<State> findStatesByCountryId(Integer countryId) {
+		return stateRepository.findByCountryId(countryId);
+    }
 }

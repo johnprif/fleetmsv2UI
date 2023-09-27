@@ -88,19 +88,13 @@
                                         <label for="ddlCountryAdd">Country</label>
                                         <select class="form-control select2" id="ddlCountryAdd" name="countryid" required>
                                             <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="country : ${countries}"
-                                                    th:value="${country.id}"
-                                                    th:text="${country.description}">
-                                            </option>
-                                        </select></div>
+                                            <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.description}"></option>
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label for="ddlStateAdd">State</label>
                                         <select class="form-control select2" id="ddlStateAdd" name="stateid" required>
                                             <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="state : ${states}"
-                                                    th:value="${state.id}"
-                                                    th:text="${state.name}">
-                                            </option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -154,30 +148,34 @@
     <script src="../../dist/js/adminlte.min.js"></script>
     <!-- Page specific script -->
 
-    <script>
-        $('document').ready(function () { // Line 1
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            $('#ddlCountryAdd').on('change', function () {
+                console.log("I got here!");
 
-            $('#ddlCountryAdd').on('change',function () { // Line 2
-                console.log("I got here!")
+                $('#ddlStateAdd').empty().append('<option value="null">-SELECT-</option>');
 
-                $('#ddlStateAdd').empty().append('<option value="null">-SELECT-</option>'); // Line 3
+                var countryid = $(this).val();
 
-                var countryid = $(this).val(); //Line 4
+                var href = "/parameters/country/" + countryid;
 
-                var href = "http://localhost:8080/parameters/country/" + countryid //Line 5
+                $.get(href, function (country, status) {
+                    var states = country.states;
 
-                $.get(href, function (country, status) { // Line 6
-
-                    var states = country.states; // Line 7
-
-                    for (var i = 0; i <= states.length-1; i++) { // Line 8
-                        $('#ddlStateAdd').append('<option value="' + states[i].id + '">' + states[i].name + '</option>'); // Line 9
+                    if (states && states.length > 0) {
+                        $.each(states, function (index, state) {
+                            $('#ddlStateAdd').append('<option value="' + state.id + '">' + state.name + '</option>');
+                        });
+                    } else {
+<!--                        $('#ddlStateAdd').append('<option value="null">No states available</option>');-->
                     }
-                })
-            })
-
-        })
+                }).fail(function () {
+<!--                    $('#ddlStateAdd').append('<option value="null">Error loading states</option>');-->
+                });
+            });
+        });
     </script>
+
 
 </th:block>
 </body>

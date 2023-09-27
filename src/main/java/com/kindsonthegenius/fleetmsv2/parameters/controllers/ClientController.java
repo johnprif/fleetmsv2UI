@@ -1,15 +1,18 @@
 package com.kindsonthegenius.fleetmsv2.parameters.controllers;
 
 import com.kindsonthegenius.fleetmsv2.parameters.models.Client;
+import com.kindsonthegenius.fleetmsv2.parameters.models.State;
 import com.kindsonthegenius.fleetmsv2.parameters.services.ClientService;
 import com.kindsonthegenius.fleetmsv2.parameters.services.CountryService;
 import com.kindsonthegenius.fleetmsv2.parameters.services.LocationService;
 import com.kindsonthegenius.fleetmsv2.parameters.services.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -39,6 +42,13 @@ public class ClientController {
 		model.addAttribute("countries", countryService.findAll());
 		model.addAttribute("states", stateService.findAll());
 		return "parameters/clientAdd";
+	}
+
+	@GetMapping("/parameters/client/{countryId}")
+	@ResponseBody
+	public ResponseEntity<List<State>> getStatesByCountry(@PathVariable Integer countryId) {
+		List<State> states = stateService.findStatesByCountryId(countryId);
+		return ResponseEntity.ok(states);
 	}
 
 	//The op parameter is either Edit or Details
