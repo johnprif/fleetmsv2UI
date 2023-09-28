@@ -70,37 +70,39 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="txtIdAdd">Id</label>
-                                        <input type="text" th:value="${contact.id}"  class="form-control" id="txtIdAdd" size="16" disabled>
+                                        <input type="text" th:value="${contact.id}"  class="form-control" id="txtIdAdd" size="16" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtFirstnameAdd">Firstname</label>
-                                        <input type="text" th:value="${contact.firstname}"  class="form-control" id="txtFirstnameAdd" name="firstname" size="16" disabled>
+                                        <input type="text" th:value="${contact.firstname}"  class="form-control" id="txtFirstnameAdd" name="firstname" size="16" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtLastNameAdd">Lastname</label>
-                                        <input type="text" th:value="${contact.lastname}"  class="form-control" id="txtLastNameAdd" name="lastname" size="16" disabled>
+                                        <input type="text" th:value="${contact.lastname}"  class="form-control" id="txtLastNameAdd" name="lastname" size="16" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtEmailAdd">Email</label>
-                                        <input type="email" th:value="${contact.email}"  class="form-control" id="txtEmailAdd" name="email" size="16" disabled>
+                                        <input type="email" th:value="${contact.email}"  class="form-control" id="txtEmailAdd" name="email" size="16" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtMobileAdd">Mobile</label>
-                                        <input type="number" th:value="${contact.mobile}"  class="form-control" id="txtMobileAdd" name="mobile" size="16" disabled>
+                                        <input type="number" th:value="${contact.mobile}"  class="form-control" id="txtMobileAdd" name="mobile" size="16" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtPhoneAdd">Phone</label>
-                                        <input type="number" th:value="${contact.phone}"  class="form-control" id="txtPhoneAdd" name="phone" size="16" disabled>
+                                        <input type="number" th:value="${contact.phone}"  class="form-control" id="txtPhoneAdd" name="phone" size="16" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtRemarksAdd">Remarks</label>
-                                        <input type="text" th:value="${contact.remarks}"  class="form-control" id="txtRemarksAdd" name="remarks" disabled>
+                                        <input type="text" th:value="${contact.remarks}"  class="form-control" id="txtRemarksAdd" name="remarks" readonly>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary" disabled>Save</button>
+                                    <a th:href="@{'/parameters/contact/Edit/'+${contact.id}}" type="submit" class="btn btn-primary">
+                                        Edit
+                                    </a>
                                     <a href="/parameters/contacts" class="btn  btn-warning">
                                         Exit
                                     </a>

@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="addressAdd">Address</label>
-                                        <textarea id="addressAdd" name="address" th:value="${location.address}" type="text" class="form-control" size="16" readonly></textarea>
+                                        <input id="addressAdd" name="address" th:value="${location.address}" type="text" class="form-control" size="16" readonly></input>
                                     </div>
                                     <div class="form-group">
                                         <label for="ddlCountryAdd">Country</label>
@@ -104,13 +104,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="detailsAdd">Details</label>
-                                        <textarea id="detailsAdd" name="Name" th:field="${location.details}" type="text" class="form-control" size="16" readonly></textarea>
+                                        <input id="detailsAdd" name="Name" th:field="${location.details}" type="text" class="form-control" size="16" readonly></input>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary" disabled>Save</button>
+                                    <a th:href="@{'/parameters/location/Edit/'+${location.id}}" type="submit" class="btn btn-primary">
+                                        Edit
+                                    </a>
                                     <a href="/parameters/locations" class="btn  btn-warning">
                                         Exit
                                     </a>
