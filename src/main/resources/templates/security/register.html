@@ -43,6 +43,12 @@
           </div>
         </div>
         <div class="input-group mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="exampleInputFile">
+            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+          </div>
+        </div>
+        <div class="input-group mb-3">
           <input type="text" class="form-control" id="username" placeholder="Username" name="username" autofocus required>
           <div class="input-group-append">
             <div class="input-group-text">
@@ -115,5 +121,13 @@
 <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
 <script th:src="@{/dist/js/adminlte.min.js}"></script>
+
+<!-- bs-custom-file-input -->
+<script th:src="@{/plugins/bs-custom-file-input/bs-custom-file-input.min.js}"></script>
+<script th:inline="javascript">
+  $(function () {
+    bsCustomFileInput.init();
+  });
+</script>
 </body>
 </html>
