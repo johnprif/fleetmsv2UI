@@ -176,8 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <img th:src="@{/dist/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-<!--            <a href="#" class="d-block">Alexander Pierce</a>-->
-            <span th:text="${firstName}"></span> <span th:text="${lastName}"></span>
+            <a href="#" class="d-block" th:text="${#authentication.getPrincipal().getUsername()}"></a>
           </div>
         </div>
 
