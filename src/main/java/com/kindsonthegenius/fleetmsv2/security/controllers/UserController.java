@@ -54,18 +54,5 @@ public class UserController {
         return "redirect:/security/users";
     }
 
-//    @GetMapping("/security/users")
-//    public String  getOnePage(Model model, @PathVariable("pageNumber") int currentPage){
-//        Page<User> page = userService.findPage(currentPage);
-//        int totalPages = page.getTotalPages();
-//        long totalItems = page.getTotalElements();
-//        List<User> users = page.getContent();
-//
-//        model.addAttribute("totalItems", totalItems);
-//        model.addAttribute("users", users);
-//
-//        return "/security/users";
-//    }
-
 
 }
