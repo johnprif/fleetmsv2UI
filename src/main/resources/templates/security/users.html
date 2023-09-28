@@ -70,7 +70,9 @@
                                                 <th></th>
                                                 <th>Firstname</th>
                                                 <th>Lastname</th>
+                                                <th>Email</th>
                                                 <th>Username</th>
+<!--                                                <th>Password</th>-->
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
@@ -79,7 +81,9 @@
                                                 <td><i class="fas fa-user-alt"></i></td>
                                                 <td th:text="${user.firstname}"></td>
                                                 <td th:text="${user.lastname}"></td>
+                                                <td th:text="${user.email}"></td>
                                                 <td th:text="${user.username}"></td>
+<!--                                                <td th:text="${user.password}"></td>-->
                                                 <td>
                                                     <div class="btn-group">
                                                         <a id="display" th:href="@{'/security/user/Edit/'+${user.id}}"
@@ -97,7 +101,9 @@
                                                 <th></th>
                                                 <th>Firstname</th>
                                                 <th>Lastname</th>
+                                                <th>Email</th>
                                                 <th>Username</th>
+<!--                                                <th>Password</th>-->
                                                 <th>Actions</th>
                                             </tr>
                                             </tfoot>

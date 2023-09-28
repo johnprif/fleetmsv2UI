@@ -1,7 +1,13 @@
 package com.kindsonthegenius.fleetmsv2;
 
+import com.kindsonthegenius.fleetmsv2.security.models.User;
+import com.kindsonthegenius.fleetmsv2.security.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.security.Principal;
 
 @Controller
 public class ApplicationController {
@@ -10,6 +16,7 @@ public class ApplicationController {
     public String goHome(){
         return "index";
     }
+
 
     @GetMapping("hr")
     public String hr(){
