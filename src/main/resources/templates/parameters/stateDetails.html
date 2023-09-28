@@ -101,7 +101,9 @@
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary" disabled>Save</button>
+                                    <a th:href="@{'/parameters/state/Edit/'+${state.id}}" type="submit" class="btn btn-primary">
+                                        Edit
+                                    </a>
                                     <a href="/parameters/states" class="btn  btn-warning">
                                         Exit
                                     </a>
