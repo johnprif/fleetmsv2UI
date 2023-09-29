@@ -43,6 +43,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/index"><i class="nav-icon fas fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item"><a href="/fleet">Fleet Home</a></li>
                             <li class="breadcrumb-item"><a href="/fleet/vehicles">Vehicles Managment</a></li>
                             <li class="breadcrumb-item active">Add Vehicle</li>
@@ -92,7 +93,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="txtDescriptionAdd">Description</label>
-                                                <textarea id="txtDescriptionAdd" name="description" type="text" class="form-control" placeholder="Description" required></textarea>
+                                                <input id="txtDescriptionAdd" name="description" type="text" class="form-control" placeholder="Description" required></input>
                                             </div>
                                             <div class="form-group">
                                                 <label for="txtAcquisitionDateAdd">Acquisition Date</label>
@@ -133,7 +134,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="txtRemarksAdd">Remarks</label>
-                                                <textarea id="txtRemarksAdd" name="remarks" type="text" class="form-control" placeholder="Remarks" required></textarea>
+                                                <input id="txtRemarksAdd" name="remarks" type="text" class="form-control" placeholder="Remarks" required></input>
                                             </div>
                                             <div class="form-group">
                                                 <label for="ddlEmployeeAdd">In Charge</label>
@@ -154,11 +155,11 @@
                                                     </option>
                                                 </select></div>
                                             <div class="form-group">
-                                                <label for="exampleInputFile">File input</label>
+                                                <label for="exampleInputFile">Choose Photo</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                        <input type="file" class="custom-file-input" id="exampleInputFile" accept=".jpg">
+                                                        <label class="custom-file-label" for="exampleInputFile">Choose Photo</label>
                                                     </div>
                                                 </div>
                                             </div>

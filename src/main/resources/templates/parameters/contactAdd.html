@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/index">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/index"><i class="nav-icon fas fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item"><a href="/parameters">Parameters Home</a></li>
                             <li class="breadcrumb-item"><a href="/parameters/contacts">Contacts Managment</a></li>
                             <li class="breadcrumb-item active">Add Contact</li>
@@ -68,10 +68,6 @@
                             <!-- form start -->
                             <form th:action="@{/parameters/contacts}" method="post">
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="txtIdAdd">Id</label>
-                                        <input id="txtIdAdd" type="text" class="form-control" size="16" disabled>
-                                    </div>
                                     <div class="form-group">
                                         <label for="txtFirstnameAdd">Firstname</label>
                                         <input id="txtFirstnameAdd" name="firstname" type="text" class="form-control" size="16" required>
