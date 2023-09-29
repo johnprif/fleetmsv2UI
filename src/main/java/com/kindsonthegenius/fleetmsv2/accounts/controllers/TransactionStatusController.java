@@ -38,6 +38,6 @@ public class TransactionStatusController {
     @RequestMapping(value="/accounts/transactionStatus/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(@PathVariable Integer id) {
         transactionStatusService.delete(id);
-        return "redirect:/accounts/transactionStatus";
+        return "redirect:/accounts/transactionStatuses";
     }
 }
