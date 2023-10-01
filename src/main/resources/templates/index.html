@@ -48,8 +48,7 @@
                   <!-- small box -->
                   <div class="small-box bg-info">
                     <div class="inner">
-                      <h3>150</h3>
-
+                      <h3 id="newOrdersNumber"></h3>
                       <p>New Orders</p>
                     </div>
                     <div class="icon">
@@ -229,6 +228,21 @@
       // $('#calendar').fullCalendar()
     })
   </script>
+
+  <script>
+    // Function to generate and update a random number
+    function updateRandomNumber() {
+      // Generate a random number between 1 and 500 (you can adjust the range)
+      const randomNumber = Math.floor(Math.random() * 500) + 1;
+
+      // Update the content of the element with the new random number
+      document.getElementById('newOrdersNumber').innerHTML = `${randomNumber}<sup style="font-size: 20px">kg</sup>`;
+    }
+
+    // Call the updateRandomNumber function every 3 seconds (you can adjust the interval)
+    setInterval(updateRandomNumber, 100); // 3000 milliseconds = 3 seconds
+  </script>
+
 </th:block>
 
 </body>
