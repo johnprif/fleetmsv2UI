@@ -40,15 +40,14 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
-
+                    <div class="col-6">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Users Table Managment</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th></th>
@@ -72,17 +71,55 @@
                                     <tfoot>
                                     <tr>
                                         <th></th>
-                                        <th>Firstname</th>
-                                        <th>Lastname</th>
-                                        <th>Username</th>
-                                        <th>Actions</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
                                     </tr>
                                     </tfoot>
                                 </table>
                             </div>
                             <!-- /.card-body -->
                         </div>
-                        <!-- /.card -->
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Users Table Managment</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example11" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="userRole:${userRoles}">
+                                        <td><i class="fa fa-table"></i></td>
+                                        <td th:text="${userRole.description}"></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a class="btn btn-danger" onclick="return confirm('Are you sure you want delete?')"
+                                                   th:href="@{'/security/role/unassign/'+${user.id}+'/' +${userRole.id}}">
+                                                    <i class="fa fa-trash"></i>Unassign</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -108,24 +145,6 @@
         <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
         <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
         <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-        <!-- Page specific script -->
-        <script>
-            $(function () {
-              $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-              }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-              $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-              });
-            });
-        </script>
     </th:block>
 
 
