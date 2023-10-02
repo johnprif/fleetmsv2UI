@@ -3,233 +3,277 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout">
 
-<body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | DataTables</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
 
 <div layout:fragment="content">
-    <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Employee Add</h3>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/index"><i class="nav-icon fas fa-home"></i> Home</a></li>
-                    <li><i class="fa fa-bars"></i><a href="/hr">HR Home</a></li>
-                    <li><i class="fa fa-square-o"></i>Employee Add</li>
-                </ol>
-            </div>
+
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60" width="60">
         </div>
-        <div class="container" style="width: 70%">
-            <form class="form-horizontal" th:action="@{/hr/employees}" method="post">
-                <div class="row justify-content-center white-bg">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            New Employee Record
-                        </header>
-                        <br>
-                        <div class="col-lg-6">
-                            <section class="panel">
-                                <div class="form-group row">
-                                    <label for="ddlTitleEdit" class="col-sm-4 col-form-label">Title: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlTitleEdit" name="title">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option value="Mr.">Mr.</option>
-                                            <option value="Ms.">Ms.</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtInitialsEdit" class="col-sm-4 col-form-label">Initials: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtInitialsEdit" name="initials"
-                                               placeholder="Initials">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtSSNEdit" class="col-sm-4 col-form-label">Social Security
-                                        No.: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtSSNEdit"
-                                               name="socialSecurityNumber" placeholder="Social Security Number">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtFirstnameEdit" class="col-sm-4 col-form-label">Firstname: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtFirstnameEdit" name="firstname"
-                                               placeholder="Firstname">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtLastnameEdit" class="col-sm-4 col-form-label">Lastname: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtLastnameEdit" name="lastname"
-                                               placeholder="Lastname">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtOthernameEdit" class="col-sm-4 col-form-label">Othername: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtOthernameEdit" name="othername"
-                                               placeholder="Othername">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlGenderEdit" class="col-sm-4 col-form-label">Gender: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlGenderEdit" name="gender">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option value="MALE">MALE</option>
-                                            <option value="FEMALE">FEMALE</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlNationalityEdit"
-                                           class="col-sm-4 col-form-label">Nationality: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlNationalityEdit" name="countryid">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="country : ${countries}"
-                                                    th:value="${country.id}"
-                                                    th:text="${country.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtAddressEdit" class="col-sm-4 col-form-label">Address</label>
-                                    <div class="col-sm-6">
-                                        <textarea class="form-control" id="txtAddressEdit" name="address"
-                                                  placeholder="Address" rows="2"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlEmployeeTypeEdit" class="col-sm-4 col-form-label">Employee
-                                        Type</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlEmployeeTypeEdit" name="employeetypeid">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="employeeType : ${employeeTypes}"
-                                                    th:value="${employeeType.id}"
-                                                    th:text="${employeeType.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                        <div class="col-lg-6">
-                            <section class="panel">
-                                <div class="form-group row">
-                                    <label for="txtDateOfBirthEdit" class="col-sm-4 col-form-label">Date of
-                                        Birth:</label>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" id="txtDateOfBirthEdit"
-                                               name="DateOfBirth" placeholder="Date of Birth">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtHireDateEdit" class="col-sm-4 col-form-label">Hire Date:</label>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" id="txtHireDateEdit" name="hireDate"
-                                               placeholder="Hire Date">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlStateEdit" class="col-sm-4 col-form-label">State/Province: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlStateEdit" name="stateid">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="state : ${states}"
-                                                    th:value="${state.id}"
-                                                    th:text="${state.name}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtCityEdit" class="col-sm-4 col-form-label">City: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtCityEdit" name="city"
-                                               placeholder="City">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtPhoneEdit" class="col-sm-4 col-form-label">Phone: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtPhoneEdit" name="phone"
-                                               placeholder="Phone">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtMobileEdit" class="col-sm-4 col-form-label">Mobile: </label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="txtMobileEdit" name="mobile"
-                                               placeholder="Mobile">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlMaritalStatusEdit" class="col-sm-4 col-form-label">Marital
-                                        Status: </label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlMaritalStatusEdit" name="maritalStatus">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option value="Married">Married</option>
-                                            <option value="Single">Single</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtEmailEdit" class="col-sm-4 col-form-label">Email</label>
-                                    <div class="col-sm-6">
-                                        <input type="email" class="form-control" id="txtEmailEdit" name="email"
-                                               placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="ddlJobTitleEdit" class="col-sm-4 col-form-label">Job Title</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" id="ddlJobTitleEdit" name="jobtitleid">
-                                            <option th:value="${null}">-SELECT-</option>
-                                            <option th:each="jobTitle : ${jobTitles}"
-                                                    th:value="${jobTitle.id}"
-                                                    th:text="${jobTitle.description}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="fupImageEdit" class="col-sm-4 col-form-label">Select Image: </label>
-                                    <div class="col-sm-6">
-                                        <input type="file" class="form-control-file" id="fupImageEdit" name="photo"
-                                               placeholder="Select File">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Username</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control" name="username" placeholder="Username">
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </section>
-                </div>
-                <br>
-                <div class="row white-bg">
-                    <div class="panel-body">
-                        <button type="submit" class="btn btn-primary">
-                            Save
-                        </button>
-                        <a href="/hr/employees" class="btn  btn-warning">
-                            Exit
-                        </a>
+
+        <!-- Content Wrapper. Contains page content -->
+
+        <!-- Content Header (Page header) -->
+        <!--Link path-->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Add Employee</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/index"><i class="nav-icon fas fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="/hr">HR Home</a></li>
+                            <li class="breadcrumb-item"><a href="/hr/employees">Employees Managment</a></li>
+                            <li class="breadcrumb-item active">Add Employee</li>
+                        </ol>
                     </div>
                 </div>
-            </form>
-        </div>
-    </section>
-</div>
+            </div><!-- /.container-fluid -->
+        </section>
 
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid" style="width: 70%">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Add New Employee Record</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form th:action="@{/hr/employees}" method="post">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="ddlTitleEdit">Title</label>
+                                                <select class="form-control select2" id="ddlTitleEdit" name="title" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option value="Mr.">Mr.</option>
+                                                    <option value="Ms.">Ms.</option>
+                                                </select></div>
+                                            <div class="form-group">
+                                                <label for="txtInitialsEdit">Initials</label>
+                                                <input id="txtInitialsEdit" name="initials" type="text" class="form-control" placeholder="Initials" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtSSNEdit">Social Security No.</label>
+                                                <input id="txtSSNEdit" name="socialSecurityNumber" type="text" class="form-control" placeholder="Social Security Number" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtFirstnameEdit">Firstname</label>
+                                                <input name="firstname" id="txtFirstnameEdit" type="text" class="form-control" placeholder="Registration Date" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtLastnameEdit">Lastname</label>
+                                                <input id="txtLastnameEdit" name="lastname" type="text" class="form-control" placeholder="Lastname" required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtOthernameEdit">Othername</label>
+                                                <input name="othername" id="txtOthernameEdit" type="date" class="form-control" placeholder="Othername" required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ddlGenderEdit">Gender</label>
+                                                <select class="form-control select2" id="ddlGenderEdit" name="gender" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option value="MALE">MALE</option>
+                                                    <option value="FEMALE">FEMALE</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ddlNationalityEdit">Nationality</label>
+                                                <select class="form-control select2" id="ddlNationalityEdit" name="countryid" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="country : ${countries}"
+                                                            th:value="${country.id}"
+                                                            th:text="${country.description}">
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtAddressEdit">Address</label>
+                                                <input id="txtAddressEdit" name="address" type="text" class="form-control" placeholder="Address" required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ddlEmployeeTypeEdit">Employee</label>
+                                                <select class="form-control select2" id="ddlEmployeeTypeEdit" name="employeetypeid" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="employeeType : ${employeeTypes}"
+                                                            th:value="${employeeType.id}"
+                                                            th:text="${employeeType.description}">
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--    New Column   -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="txtDateOfBirthEdit">Date of Birth</label>
+                                                <input id="txtDateOfBirthEdit" name="DateOfBirth" type="date" class="form-control" placeholder="Date of Birth" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtHireDateEdit">Hire Date</label>
+                                                <input id="txtHireDateEdit" name="hireDate" type="date" class="form-control" placeholder="Hire Date" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ddlStateEdit">State/Province</label>
+                                                <select class="form-control select2" id="ddlStateEdit" name="stateid" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="state : ${states}"
+                                                            th:value="${state.id}"
+                                                            th:text="${state.name}">
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtCityEdit">City</label>
+                                                <input id="txtCityEdit" name="city" type="text" class="form-control" placeholder="City" required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtPhoneEdit">Phone</label>
+                                                <input id="txtPhoneEdit" name="phone" type="tel" class="form-control" placeholder="Phone" required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtMobileEdit">Mobile</label>
+                                                <input id="txtMobileEdit" name="mobile" type="tel" class="form-control" placeholder="Mobile" required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ddlMaritalStatusEdit">Marital
+                                                    Status</label>
+                                                <select class="form-control select2" id="ddlMaritalStatusEdit" name="maritalStatus" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option value="$Married">Married</option>
+                                                    <option value="Single">Single</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtEmailEdit">Email</label>
+                                                <input id="txtEmailEdit" name="email" type="email" class="form-control" placeholder="Email" required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ddlJobTitleEdit">Job Title</label>
+                                                <select class="form-control select2" id="ddlJobTitleEdit" name="jobtitleid" required>
+                                                    <option th:value="${null}">-SELECT-</option>
+                                                    <option th:each="jobTitle : ${jobTitles}"
+                                                            th:value="${jobTitle.id}"
+                                                            th:text="${jobTitle.description}">
+                                                    </option>
+                                                </select></div>
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Choose Photo</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" name="photo" id="exampleInputFile" accept=".jpg">
+                                                        <label class="custom-file-label" for="exampleInputFile">Choose Photo</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <input name="username" type="text" class="form-control" placeholder="Username" required></input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a href="/hr/employees" class="btn  btn-warning">
+                                        Exit
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+</div>
+<!-- ./wrapper -->
+
+<th:block layout:fragment="script">
+    <!-- DataTables  & Plugins -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../plugins/jszip/jszip.min.js"></script>
+    <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- Page specific script -->
+
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+          bsCustomFileInput.init();
+        });
+    </script>
+
+    <script>
+        $('document').ready(function () { // Line 1
+
+            $('#ddlCountryAdd').on('change',function () { // Line 2
+                console.log("I got here!")
+
+                $('#ddlStateAdd').empty().append('<option value="null">-SELECT-</option>'); // Line 3
+
+                var countryid = $(this).val(); //Line 4
+
+                var href = "http://localhost:8080/parameters/country/" + countryid //Line 5
+
+                $.get(href, function (country, status) { // Line 6
+
+                    var states = country.states; // Line 7
+
+                    for (var i = 0; i <= states.length-1; i++) { // Line 8
+                        $('#ddlStateAdd').append('<option value="' + states[i].id + '">' + states[i].name + '</option>'); // Line 9
+                    }
+                })
+            })
+
+        })
+    </script>
+
+</th:block>
 </body>
 </html>
