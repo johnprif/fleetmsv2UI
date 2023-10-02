@@ -74,10 +74,24 @@ public class UserController {
 
 
     @RequestMapping(value = "/security/user/delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
-    public  String delete(@PathVariable Integer id){
+    public String delete(@PathVariable Integer id) {
+        // Get the user to determine the username for the photo file
+        User user = userService.findById(id);
+
+        // Delete the user's photo file if it exists
+        String photoFileName = user.getUsername() + ".jpg";
+        String photoFilePath = "src/main/resources/static/img/users/" + photoFileName;
+        File photoFile = new File(photoFilePath);
+        if (photoFile.exists()) {
+            photoFile.delete();
+        }
+
+        // Delete the user
         userService.delete(id);
+
         return "redirect:/security/users";
     }
+
 
 
 }
