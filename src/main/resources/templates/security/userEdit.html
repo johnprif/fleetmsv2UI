@@ -23,13 +23,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Users</h1>
+                        <h1>Manage Roles</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/index"><i class="nav-icon fas fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item"><a href="/security">Security Home</a></li>
-                            <li class="breadcrumb-item active">Users</li>
+                            <li class="breadcrumb-item"><a href="/security/users">Users</a></li>
+                            <li class="breadcrumb-item active">Manage Roles</li>
                         </ol>
                     </div>
                 </div>
@@ -40,10 +41,49 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
+
+                    <div class="col-6">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">User Details and Assigned Roles</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Id</label>
+                                        <input name="id" type="text" th:value="${user.id}" class="form-control" size="16" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Firstname</label>
+                                        <input name="firstname" th:value="${user.firstname}" type="text" class="form-control" size="16" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Lastname</label>
+                                        <input name="lastname" th:value="${user.lastname}" type="text" class="form-control" size="16" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input name="username" th:value="${user.username}" type="text" class="form-control" size="16" readonly>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+<!--                                    <button type="submit" class="btn btn-primary">Save</button>-->
+<!--                                    <a href="/parameters/countries" class="btn  btn-warning">-->
+<!--                                        Exit-->
+<!--                                    </a>-->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="col-6">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Users Table Managment</h3>
+                                <h3 class="card-title">Signed Roles</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -52,6 +92,7 @@
                                     <tr>
                                         <th></th>
                                         <th>Description</th>
+                                        <th>Details</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -59,11 +100,12 @@
                                     <tr th:each="userRole:${userRoles}">
                                         <td><i class="fa fa-table"></i></td>
                                         <td th:text="${userRole.description}"></td>
+                                        <td th:text="${userRole.details}"></td>
                                         <td>
                                             <div class="btn-group">
-                                                <a class="btn btn-danger" onclick="return confirm('Are you sure you want delete?')"
+                                                <a class="btn btn-danger" onclick="return confirm('Are you sure you want to unsign this role?')"
                                                    th:href="@{'/security/role/unassign/'+${user.id}+'/' +${userRole.id}}">
-                                                    <i class="fa fa-trash"></i>Unassign</a>
+                                                    <i class="fa fa-trash"></i> Unassign</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -72,6 +114,7 @@
                                     <tr>
                                         <th></th>
                                         <th>Description</th>
+                                        <th>Details</th>
                                         <th>Action</th>
                                     </tr>
                                     </tfoot>
@@ -79,32 +122,32 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
-                    </div>
 
-                    <div class="col-6">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Users Table Managment</h3>
+                                <h3 class="card-title">Unsigned Roles</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example11" class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th></th>
                                         <th>Description</th>
+                                        <th>Details</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="userRole:${userRoles}">
+                                    <tr th:each="userNotRole:${userNotRoles}">
                                         <td><i class="fa fa-table"></i></td>
-                                        <td th:text="${userRole.description}"></td>
+                                        <td th:text="${userNotRole.description}"></td>
+                                        <td th:text="${userNotRole.details}"></td>
                                         <td>
                                             <div class="btn-group">
-                                                <a class="btn btn-danger" onclick="return confirm('Are you sure you want delete?')"
-                                                   th:href="@{'/security/role/unassign/'+${user.id}+'/' +${userRole.id}}">
-                                                    <i class="fa fa-trash"></i>Unassign</a>
+                                                <a class="btn btn-success" onclick="return confirm('Are you sure you want to assign this role?')"
+                                                   th:href="@{'/security/role/assign/'+${user.id}+'/' +${userNotRole.id}}">
+                                                    <i class="fa fa-trash"></i> Assign</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -113,6 +156,7 @@
                                     <tr>
                                         <th></th>
                                         <th>Description</th>
+                                        <th>Details</th>
                                         <th>Action</th>
                                     </tr>
                                     </tfoot>
@@ -125,6 +169,7 @@
                 </div>
                 <!-- /.row -->
             </div>
+
             <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
