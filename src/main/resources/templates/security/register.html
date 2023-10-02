@@ -25,7 +25,7 @@
     <div class="card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form th:action="@{/users/addNew}" method="post">
+      <form th:action="@{/users/addNew}" method="post" enctype="multipart/form-data">>
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Firstname" autofocus name="firstname" required>
           <div class="input-group-append">
@@ -44,7 +44,7 @@
         </div>
         <div class="input-group mb-3">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="exampleInputFile" accept=".jpg">
+            <input type="file" class="custom-file-input" id="exampleInputFile" name="photo" accept=".jpg">
             <label class="custom-file-label" for="exampleInputFile">Choose Photo</label>
           </div>
         </div>

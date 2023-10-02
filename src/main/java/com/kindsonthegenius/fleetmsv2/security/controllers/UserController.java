@@ -5,13 +5,18 @@ import com.kindsonthegenius.fleetmsv2.security.models.User;
 import com.kindsonthegenius.fleetmsv2.security.services.RoleService;
 import com.kindsonthegenius.fleetmsv2.security.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -23,6 +28,9 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     @GetMapping("/security/users")
     public String getAll(Model model) {
@@ -40,13 +48,30 @@ public class UserController {
     }
 
     @PostMapping("/users/addNew")
-    public RedirectView addNew(User user, RedirectAttributes redir) {
+    public RedirectView addNew(
+            User user,
+            @RequestParam("photo") MultipartFile photoFile,
+            UriComponentsBuilder uriBuilder,
+            RedirectAttributes redir
+    ) throws IOException {
+        // Save the photo with the username as the filename
+        if (!photoFile.isEmpty()) {
+            String photoFileName = user.getUsername() + ".jpg";
+            File photo = new File(resourceLoader.getResource("classpath:/static/img/users/").getFile(), photoFileName);
+            photoFile.transferTo(photo);
+        }
+
+        // Save the user
         userService.save(user);
 
-        RedirectView redirectView = new RedirectView("/login", true);
-        redir.addFlashAttribute("message", "You have successfully registered a new user!");
+        // Set a flash attribute to indicate successful registration
+        redir.addFlashAttribute("registrationSuccess", true);
+
+        RedirectView redirectView = new RedirectView(uriBuilder.path("/login").build().toUriString(), true);
         return redirectView;
     }
+
+
 
     @RequestMapping(value = "/security/user/delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public  String delete(@PathVariable Integer id){

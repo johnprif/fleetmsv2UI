@@ -90,5 +90,11 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+
+<!-- JavaScript to display the browser popup -->
+<script th:if="${registrationSuccess}">
+  // Display a browser popup (alert) to confirm successful registration
+  alert("You have successfully registered a new user!");
+</script>
 </body>
 </html>
