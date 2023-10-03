@@ -68,7 +68,7 @@
           <input type="password" class="form-control" placeholder="Password" id="password" name="password" autofocus required>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span id="showPassword" class="fas fa-eye-slash"></span>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
           <input type="password" class="form-control" placeholder="Retype password" id="confirmPassword" required>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span id="showConfirmPassword" class="fas fa-eye-slash"></span>
             </div>
           </div>
         </div>
@@ -129,5 +129,40 @@
     bsCustomFileInput.init();
   });
 </script>
+
+<script>
+  // Get the password input field and the eye icon
+  var passwordInput = document.getElementById("password");
+  var showPasswordIcon = document.getElementById("showPassword");
+
+  // Toggle password visibility on click
+  showPasswordIcon.addEventListener("click", function () {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      showPasswordIcon.className = "fas fa-eye";
+    } else {
+      passwordInput.type = "password";
+      showPasswordIcon.className = "fas fa-eye-slash";
+    }
+  });
+</script>
+
+<script>
+  // Get the confirmPassword input field and the eye icon
+  var passwordInput = document.getElementById("confirmPassword");
+  var showPasswordIcon = document.getElementById("showConfirmPassword");
+
+  // Toggle password visibility on click
+  showPasswordIcon.addEventListener("click", function () {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      showPasswordIcon.className = "fas fa-eye";
+    } else {
+      passwordInput.type = "password";
+      showPasswordIcon.className = "fas fa-eye-slash";
+    }
+  });
+</script>
+
 </body>
 </html>
