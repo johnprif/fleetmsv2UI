@@ -32,15 +32,15 @@
           <input type="text" class="form-control" placeholder="Username" name="username" autofocus>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          <input type="password" class="form-control" placeholder="Password" id="password" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span id="showPassword" class="fas fa-eye-slash"></span>
             </div>
           </div>
         </div>
@@ -96,5 +96,23 @@
   // Display a browser popup (alert) to confirm successful registration
   alert("You have successfully registered a new user!");
 </script>
+
+<script>
+  // Get the password input field and the eye icon
+  var passwordInput = document.getElementById("password");
+  var showPasswordIcon = document.getElementById("showPassword");
+
+  // Toggle password visibility on click
+  showPasswordIcon.addEventListener("click", function () {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      showPasswordIcon.className = "fas fa-eye";
+    } else {
+      passwordInput.type = "password";
+      showPasswordIcon.className = "fas fa-eye-slash";
+    }
+  });
+</script>
+
 </body>
 </html>
