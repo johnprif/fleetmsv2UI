@@ -130,12 +130,13 @@
   });
 </script>
 
-<script>
-  // Get the password input field and the eye icon
+<!-- JavaScript for Password Field -->
+<script th:inline="javascript">
+  // Get the password input field and the eye icon for password
   var passwordInput = document.getElementById("password");
   var showPasswordIcon = document.getElementById("showPassword");
 
-  // Toggle password visibility on click
+  // Toggle password visibility for password field on click
   showPasswordIcon.addEventListener("click", function () {
     if (passwordInput.type === "password") {
       passwordInput.type = "text";
@@ -147,19 +148,20 @@
   });
 </script>
 
-<script>
-  // Get the confirmPassword input field and the eye icon
-  var passwordInput = document.getElementById("confirmPassword");
-  var showPasswordIcon = document.getElementById("showConfirmPassword");
+<!-- JavaScript for Confirm Password Field -->
+<script th:inline="javascript">
+  // Get the confirm password input field and the eye icon for confirm password
+  var confirmPasswordInput = document.getElementById("confirmPassword");
+  var showConfirmPasswordIcon = document.getElementById("showConfirmPassword");
 
-  // Toggle password visibility on click
-  showPasswordIcon.addEventListener("click", function () {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      showPasswordIcon.className = "fas fa-eye";
+  // Toggle password visibility for confirm password field on click
+  showConfirmPasswordIcon.addEventListener("click", function () {
+    if (confirmPasswordInput.type === "password") {
+      confirmPasswordInput.type = "text";
+      showConfirmPasswordIcon.className = "fas fa-eye";
     } else {
-      passwordInput.type = "password";
-      showPasswordIcon.className = "fas fa-eye-slash";
+      confirmPasswordInput.type = "password";
+      showConfirmPasswordIcon.className = "fas fa-eye-slash";
     }
   });
 </script>
